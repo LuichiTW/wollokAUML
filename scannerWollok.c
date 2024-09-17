@@ -1,26 +1,59 @@
-#include <string.h>    
+#include "scannerWollok.h"
+#include <string.h>
 
- int esEspacio(char ch){
-   return ch == '\n'|| ch == '\0'; 
- }   
-    
-char *scanner(char *linea){
+//esta en cero si no esta escribiendo una clase o objeto
+int estaEscribiendoClase = 1;
+
+char *scanner(char *linea)
+{
   char *palabra = strtok(linea, " ");
-  char token[50];
-  while (palabra != NULL) {
-     if(esPalabra(palabra)){
-       
-     }else{
-       return " ";
-     }
+  while (palabra != NULL)
+  {
+    if (esPalabra(palabra))
+    {
+      limpiarToken(token); 
 
-    palabra = strok(NULL, " ");
+      //detecta si la palabra es object o class
+      escrituraClase(palabra);
+
+      palabra = strtok(NULL, " ");
+
+      //toma la siguiente palabra en caso de que sea una variable con property
+      if (strcmp(palabra, "property")) {
+        palabra = strtok(NULL, " ");
+      }
+
+      //limpia caracteres de apertura de bloque y asignacion
+      palabra = strtok(palabra, "=");
+      palabra = strtok(palabra, "{");
+      return palabra;
+    }
+    palabra = strtok(NULL, " ");
   }
-   return token;
- }
+  return NULL;
+}
+
+void escrituraClase(char *palabra){
+  if (strcmp(palabra, "object") || strcmp(palabra, "class")) {
+    estaEscribiendoClase = 1;
+  }else{
+    estaEscribiendoClase = 0;
+  }
+}
+
+void limpiarToken(char token[50]){
+  for (int i = 0; i < 50; i++){
+    token[i] = '\0';
+  }
+}
+
+int esPalabra(char *palabra)
+{
+  return strcmp(palabra, "object") || strcmp(palabra, "class") || strcmp(palabra, "var") || strcmp(palabra, "const") || strcmp(palabra, "method");
+}
 
 
- int esPalabra(palabra){
-   return strcmp(palabra, "object") || strcmp(palabra, "class") || strcmp(palabra, "var") || strcmp(palabra, "const") || strcmp(palabra, "method");
-;
- }
+int esEspacio(char ch)
+{
+  return ch == '\n' || ch == '\0';
+}

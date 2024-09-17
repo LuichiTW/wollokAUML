@@ -1,10 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-//cambiar mas adelante por los headers
-#include "scannerWollok.c"
-#include "imprimirResultado.c"
+#include "scannerWollok.h"
+#include "imprimirResultado.h"
 
 char linea[100];
 char token[50];
@@ -15,17 +10,18 @@ int main(){
     printf("error al abrir archivo");
     return 1;
   }
-  printf("@startuml");
+  printf("@startuml \n");
 
   //toma el token
   while(fgets(linea, sizeof(linea), archivo)){
 
     if(!esEspacio(linea[0])){
       strcpy(token, scanner(linea));
+      printf("%s \n", token);
    }
   }
 
-  printf("@enduml");
+  printf("@enduml \n");
 
   return 0; 
 }
