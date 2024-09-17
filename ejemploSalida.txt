@@ -1,0 +1,9 @@
+@startuml
+ArrayList
+ArrayColection
+
+ArrayColection : +equals()
+ArrayList : -Object[] elementData
+ArrayList : +size()
+
+@enduml
