@@ -1,9 +1,23 @@
 @startuml
-ArrayList
-ArrayColection
-
-ArrayColection : +equals()
-ArrayList : -Object[] elementData
-ArrayList : +size()
-
+class Tom
+{
+-energia
+-posicion
++velocidad()
++correrA(raton)
++posicion()
++posicion(nuevaPosicion) 
++esMasVeloz(raton)
+}
+class jerry
+jerry : -peso
+jerry : -posicion
+jerry : +velocidad()
+jerry : +posicion()
+ 
+class robotRaton
+robotRaton : -velocidad
+robotRaton : -posicion
+robotRaton : +velocidad()
+robotRaton : +posicion() 
 @enduml

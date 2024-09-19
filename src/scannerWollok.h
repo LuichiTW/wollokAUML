@@ -5,7 +5,7 @@
 
 void scanner(char *linea);
 void escrituraClase(char *palabra);
+void escrituraVariable(char *palabra);
 void limpiarLinea(char linea[150]);
 void limpiarToken(char token[50]);
 int esPalabra(char *palabra);
-int esEspacio(char ch);

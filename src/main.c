@@ -1,5 +1,5 @@
 #include "scannerWollok.h"
-//#include "imprimirResultado.h"
+#include "imprimirResultado.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>    
@@ -18,9 +18,12 @@ int main(){
   //toma el token
   while(fgets(linea, sizeof(linea), archivo) != NULL){
     scanner(linea);
+    imprimirResultado();
     limpiarLinea(linea);
   }
 
+  //se agrega una llave de cierre para cerrar el ultimo objeto
+  printf("}\n");
   printf("@enduml \n");
 
   fclose(archivo);

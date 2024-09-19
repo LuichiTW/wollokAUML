@@ -4,11 +4,14 @@
 
 //esta en cero si no esta escribiendo una clase o objeto
 int estaEscribiendoClase = 1;
+//esta en cero si esta no esta escribiendo una variable (cuando es class, object y method se considera 0)
+int estaEscribiendoVariable = 1;
 char token[50];
 
 void scanner(char *linea)
 {
   char *palabra = strtok(linea, " ");
+  limpiarToken(token);
   while (palabra != NULL)
   {
     if (esPalabra(palabra))
@@ -32,7 +35,14 @@ void scanner(char *linea)
     palabra = strtok(NULL, " ");
   }
   printf("%s\n", token);
-  limpiarToken(token);
+}
+
+void escrituraVariable(char *palabra){
+  if (strcmp(palabra, "var") == 0) {
+    estaEscribiendoVariable = 1;
+  }else {
+    estaEscribiendoVariable = 0;
+  }
 }
 
 void escrituraClase(char *palabra){
@@ -61,7 +71,3 @@ int esPalabra(char *palabra)
 }
 
 
-int esEspacio(char ch)
-{
-  return ch == '\n' || ch == '\0';
-}
