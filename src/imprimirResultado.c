@@ -4,22 +4,23 @@
 extern char token[50];
 extern int estaEscribiendoClase;
 extern int estaEscribiendoVariable;
+int primeraInteracion = 1;
 
 void imprimirResultado(){
     if (!esEspacio(token[0])) {
         if(estaEscribiendoClase){
-            if (!estaEscribiendoVariable) {
+            if (!estaEscribiendoVariable && !primeraInteracion) {
                 printf("}\n");
             }
             printf("class %s\n", token);
             printf("{\n");
+            primeraInteracion = 0;
         }else{
             if (estaEscribiendoVariable) {
                 printf("-%s\n", token);
             }else{
                 printf("+%s\n", token);
             }
-
         }
     }
 }

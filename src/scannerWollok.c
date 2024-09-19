@@ -19,6 +19,7 @@ void scanner(char *linea)
 
       //detecta si la palabra es object o class
       escrituraClase(palabra);
+      escrituraVariable(palabra);
 
       palabra = strtok(NULL, " ");
 
@@ -34,11 +35,10 @@ void scanner(char *linea)
     }
     palabra = strtok(NULL, " ");
   }
-  printf("%s\n", token);
 }
 
 void escrituraVariable(char *palabra){
-  if (strcmp(palabra, "var") == 0) {
+  if (strcmp(palabra, "var") == 0 || strcmp(palabra, "const") == 0) {
     estaEscribiendoVariable = 1;
   }else {
     estaEscribiendoVariable = 0;
