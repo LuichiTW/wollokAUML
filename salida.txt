@@ -1,4 +1,38 @@
 @startuml 
+class delfina
+{
+-nivelDiversion
+-consola
++diversion()
++agarrar(nuevaConsola)
++jugar(videojuego)
+}
+class arkenoid
+{
+-diversion
++diversion(consola)
+}
+class mario
+{
++diversion(consola)
+}
+class pokemon
+{
++diversion(consola)
+}
+class play
+{
+-jugabilidad
++jugabilidad()
++usar()
+}
+class portatil
+{
+-jugabilidad
+-nivelBateria
++jugabilidad()
++usar()
+}
 class tom
 {
 -energia
