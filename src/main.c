@@ -19,6 +19,8 @@ int main(){
     return 1;
   }
 
+  freopen("salida.txt", "w", stdout);
+
   printf("@startuml \n");
 
   while ((ent = readdir(dir)) != NULL) {
@@ -57,5 +59,6 @@ int main(){
 
 
   printf("@enduml \n");
+  fclose(stdout);
   return 0; 
 }
