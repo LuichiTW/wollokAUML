@@ -11,12 +11,14 @@ char token[50];
 void scanner(char *linea)
 {
   char *palabra = strtok(linea, " ");
+
+
   limpiarToken(token);
   while (palabra != NULL)
   {
+
     if (esPalabra(palabra))
     {
-
       //detecta si la palabra es object o class
       escrituraClase(palabra);
       escrituraVariable(palabra);

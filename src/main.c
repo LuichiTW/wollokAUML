@@ -37,6 +37,11 @@ int main(){
 
         //toma el token
         while(fgets(linea, sizeof(linea), archivo) != NULL){
+
+          if (linea[0] == '\t') {
+            strcpy(linea, linea + 1); 
+          }
+
           scanner(linea);
           imprimirResultado();
           limpiarLinea(linea);

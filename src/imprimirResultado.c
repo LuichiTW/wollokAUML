@@ -7,6 +7,7 @@ extern int estaEscribiendoVariable;
 int primeraInteracion = 1;
 
 void imprimirResultado(){
+    //printf("%d", !esEspacio(token[0]));
     if (!esEspacio(token[0])) {
         if(estaEscribiendoClase){
             if (!estaEscribiendoVariable && !primeraInteracion) {
@@ -24,9 +25,6 @@ void imprimirResultado(){
         }
     }
 }
-
-
-
 
 
 int esEspacio(char ch)
