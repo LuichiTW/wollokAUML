@@ -8,6 +8,8 @@ int estaEscribiendoClase = 1;
 int estaEscribiendoVariable = 1;
 char token[50];
 
+objetos *lista = NULL;
+
 void scanner(char *linea)
 {
   char *palabra = strtok(linea, " ");
@@ -19,7 +21,7 @@ void scanner(char *linea)
 
     if (esPalabra(palabra))
     {
-      //detecta si la palabra es object o class
+      //flags para la impresion del token      
       escrituraClase(palabra);
       escrituraVariable(palabra);
 
@@ -34,10 +36,63 @@ void scanner(char *linea)
       palabra = strtok(palabra, "=");
       palabra = strtok(palabra, "{");
       strcpy(token, palabra); 
+
+      //copia el token y lo guarda para luego formar las interfaces
+      agregarObjeto(token);
+      
     }
+
     palabra = strtok(NULL, " ");
   }
 }
+
+
+void agregarObjeto(char token[50]){
+  if (estaEscribiendoClase) {
+    if (lista == NULL) {
+      //inicializar la lista
+      strcpy(lista->nombre, token);
+      limpiarLinea(lista->metodos);
+      lista->siguiente = NULL;
+    }else{
+      //inicializar el nuevo nodo
+      objetos *nuevoNodo = malloc(sizeof(objetos));
+      strcpy(nuevoNodo->nombre, token);
+      limpiarLinea(nuevoNodo->metodos);
+      nuevoNodo->siguiente = NULL;
+      //agregar el nuevo nodo al final de la lista
+      objetos *aux = lista;
+      while(aux != NULL){
+        aux = aux->siguiente; 
+      }
+      aux = nuevoNodo;
+    }
+  } else if (!estaEscribiendoVariable && !estaEscribiendoClase) { //porque si no esta escribiendo una clase ni variable, esta en un metodo
+    //va hacia el ultimo objeto agregado
+    objetos *aux = lista;
+    while (aux->siguiente != NULL) {
+      aux = aux->siguiente; 
+    }
+    agregarMetodo(aux, token);
+  }
+}
+
+void agregarMetodo(objetos *auxiliar,char token[50]){
+  int contador = 0;
+  //formato del string esperado: vida()\ncomer()\n
+  while(auxiliar->metodos[contador] != '\0' && auxiliar->metodos[contador] != '\n'){
+    contador++;
+  }
+  for (int i = 0; token[i] != '\0'; i++) {
+    auxiliar->metodos[contador + i] = token[i];
+  }
+  contador = 0;
+  while(auxiliar->metodos[contador] != '\0' && auxiliar->metodos[contador] != '\n'){
+    contador++;
+  }
+  auxiliar->metodos[contador] = '\n';
+}
+
 
 void escrituraVariable(char *palabra){
   if (strcmp(palabra, "var") == 0 || strcmp(palabra, "const") == 0) {

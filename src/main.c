@@ -1,5 +1,6 @@
 #include "scannerWollok.h"
 #include "imprimirResultado.h"
+#include "interfaces.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>    
