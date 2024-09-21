@@ -1,9 +1,11 @@
 #include "imprimirResultado.h"
+#include "interfaces.h"
 #include <stdio.h>
 
 extern char token[50];
 extern int estaEscribiendoClase;
 extern int estaEscribiendoVariable;
+extern interfaces *listaInterfaces;
 int primeraInteracion = 1;
 
 void imprimirResultado(){
@@ -26,6 +28,25 @@ void imprimirResultado(){
     }
 }
 
+
+void imprimirInterfaces(){
+    if(listaInterfaces != NULL){
+        interfaces *auxiliar = listaInterfaces;
+        int numeroInterfaz = 0;
+        while(auxiliar != NULL){
+            imprimirMetodos(auxiliar->metodos);
+            imprimirObjetos(auxiliar->objetos);
+            numeroInterfaz++;
+            auxiliar = auxiliar->siguiente;
+        }
+    }
+}
+
+void imprimirMetodos(char metodos[150]){
+}
+
+void imprimirObjetos(char objetos[150]){
+}
 
 int esEspacio(char ch)
 {
