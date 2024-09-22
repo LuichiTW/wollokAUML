@@ -78,7 +78,6 @@ void limpiarListaInterfaces(){
 
 }
 
-
 int esEspacio(char ch)
 {
     return ch == '\n' || ch == '\0' || ch == ' ';

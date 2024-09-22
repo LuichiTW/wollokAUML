@@ -4,10 +4,11 @@
 
 extern objetos *lista;
 
-interfaces *listaInterfaces;
+interfaces *listaInterfaces = NULL;
 
 void crearInterfaces(){
     //inicializar la lista de interfaces
+    listaInterfaces = malloc(sizeof(interfaces));
     limpiarLinea(listaInterfaces->objetos);
     limpiarLinea(listaInterfaces->metodos);
     listaInterfaces->siguiente = NULL;

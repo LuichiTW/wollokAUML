@@ -46,33 +46,59 @@ void scanner(char *linea)
   }
 }
 
-
-void agregarObjeto(char token[50]){
-  if (estaEscribiendoClase) {
-    if (lista == NULL) {
-      //inicializar la lista
+void agregarObjeto(char token[50])
+{
+  if (estaEscribiendoClase)
+  {
+    if (lista == NULL)
+    {
+      // inicializar la lista
+      lista = malloc(sizeof(objetos));
+      if (lista == NULL)
+      {
+        perror("Error al asignar memoria");
+        exit(EXIT_FAILURE);
+      }
       strcpy(lista->nombre, token);
+      //printf("%s\n", lista->nombre);
       limpiarLinea(lista->metodos);
       lista->siguiente = NULL;
-    }else{
-      //inicializar el nuevo nodo
+    }
+    else
+    {
+      // inicializar el nuevo nodo
       objetos *nuevoNodo = malloc(sizeof(objetos));
+      if (nuevoNodo == NULL)
+      {
+        perror("Error al asignar memoria");
+        exit(EXIT_FAILURE);
+      }
       strcpy(nuevoNodo->nombre, token);
       limpiarLinea(nuevoNodo->metodos);
       nuevoNodo->siguiente = NULL;
-      //agregar el nuevo nodo al final de la lista
+      // agregar el nuevo nodo al final de la lista
       objetos *aux = lista;
-      while(aux != NULL){
-        aux = aux->siguiente; 
+      while (aux->siguiente != NULL)
+      {
+        aux = aux->siguiente;
       }
-      aux = nuevoNodo;
+      aux->siguiente = nuevoNodo;
+      //printf("%s\n", nuevoNodo->nombre);
     }
-  } else if (!estaEscribiendoVariable && !estaEscribiendoClase) { //porque si no esta escribiendo una clase ni variable, esta en un metodo
-    //va hacia el ultimo objeto agregado
+  }
+  else if (!estaEscribiendoVariable)
+  {    
+    // va hacia el ultimo objeto agregado
+    if (lista == NULL) {
+      perror("Error: lista es NULL");
+      exit(EXIT_FAILURE);
+    }
     objetos *aux = lista;
-    while (aux->siguiente != NULL) {
-      aux = aux->siguiente; 
+    while (aux->siguiente != NULL)
+    {
+      aux = aux->siguiente;
     }
+    //printf("%s\n", token);
     agregarMetodo(aux, token);
   }
 }
