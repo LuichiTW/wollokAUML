@@ -1,6 +1,7 @@
 #include "imprimirResultado.h"
 #include "interfaces.h"
 #include <stdio.h>
+#include <string.h>
 
 extern char token[50];
 extern int estaEscribiendoClase;
@@ -28,14 +29,16 @@ void imprimirResultado(){
     }
 }
 
-
 void imprimirInterfaces(){
     if(listaInterfaces != NULL){
         interfaces *auxiliar = listaInterfaces;
         int numeroInterfaz = 0;
         while(auxiliar != NULL){
+            printf("interfaz%d\n", numeroInterfaz);
+            printf("{\n");
             imprimirMetodos(auxiliar->metodos);
-            imprimirObjetos(auxiliar->objetos);
+            printf("}\n");
+            imprimirObjetos(auxiliar->objetos, numeroInterfaz);
             numeroInterfaz++;
             auxiliar = auxiliar->siguiente;
         }
@@ -43,10 +46,38 @@ void imprimirInterfaces(){
 }
 
 void imprimirMetodos(char metodos[150]){
+    if (metodos[0] != '\0') {
+        char *palabra = strtok(metodos, "\n");
+        while (palabra != NULL) {
+            printf("%s\n", palabra);
+            palabra = strtok(NULL, "\n");
+        }
+    }
 }
 
-void imprimirObjetos(char objetos[150]){
+void imprimirObjetos(char objetos[150], int numeroInterfaz){
+    if (objetos[0] != '\0') {
+        char *palabra = strtok(objetos, "\n");
+        while (palabra != NULL) {
+            printf("%s", palabra);
+            printf(" --> interfaz%d\n", numeroInterfaz);
+            palabra = strtok(NULL, "\n");
+        }
+    }
 }
+
+//funcion para limpiar la lista de interfaces
+void limpiarListaInterfaces(){
+
+    interfaces *aux = listaInterfaces; 
+    while(listaInterfaces != NULL){
+        aux = listaInterfaces;
+        listaInterfaces = listaInterfaces->siguiente;
+        free(aux);
+    }
+
+}
+
 
 int esEspacio(char ch)
 {

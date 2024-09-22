@@ -14,5 +14,6 @@ void buscarCoincidencias(char nombre[50], char *metodo);
 int tieneMetodo(char metodos[150], char *metodo);
 void agregarMetodoInterfaces(char metodos[150],char *token);
 void agregarNombreInterfaz(char objetos[150],char nombre[50]);
+void limpiarLista();
 
 #endif //INTERFACES_H

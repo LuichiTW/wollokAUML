@@ -42,6 +42,7 @@ int main(){
         while(fgets(linea, sizeof(linea), archivo) != NULL){
 
           if (linea[0] == '\t') {
+            //posible fuente de errores
             strcpy(linea, linea + 1); 
           }
 
@@ -58,8 +59,15 @@ int main(){
   //se agrega una llave de cierre para cerrar el ultimo objeto
   printf("}\n");
 
+  //imprime las interfaces y hace las conexiones
+  imprimirInterfaces();
 
   printf("@enduml \n");
+
+  //limpiar listas
+  limpiarLista();
+  limpiarListaInterfaces();
+  
   fclose(stdout);
   return 0; 
 }

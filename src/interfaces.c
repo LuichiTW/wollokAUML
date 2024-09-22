@@ -58,7 +58,7 @@ int tieneMetodo(char metodos[150], char *metodo){
             if (strcmp(unMetodo, metodo) == 0) {
                 return 1;
             }
-            metodo = strtok(NULL, "\n");
+            unMetodo = strtok(NULL, "\n");
         }
     }
     return 0;
@@ -96,4 +96,13 @@ void agregarNombreInterfaz(char objetos[150],char nombre[50]){
     contador++;
   }
   objetos[contador] = '\n';
+}
+
+void limpiarLista(){
+    objetos *aux = lista;
+    while(lista != NULL){
+        aux = lista;
+        lista = lista->siguiente;
+        free(aux);
+    }
 }
