@@ -41,7 +41,7 @@ int main(){
         while(fgets(linea, sizeof(linea), archivo) != NULL){
 
           if (linea[0] == '\t') {
-            strcpy(linea, linea + 1); 
+            memmove(linea, linea+1, strlen(linea));
           }
 
           scanner(linea);
