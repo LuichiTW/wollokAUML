@@ -19,9 +19,9 @@ int main(){
     return 1;
   }
 
-  freopen("salida.txt", "w", stdout);
+  freopen("salida.plantuml", "w", stdout);
 
-  printf("@startuml \n");
+  printf("@startuml salida\n");
 
   while ((ent = readdir(dir)) != NULL) {
     //verificar si es un archivo .wlk

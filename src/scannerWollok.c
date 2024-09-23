@@ -26,7 +26,7 @@ void scanner(char *linea)
       palabra = strtok(NULL, " ");
 
       //toma la siguiente palabra en caso de que sea una variable con property
-      if (strcmp(palabra, "property") == 0) {
+      if (strcmp(palabra, "property") == 0 || strcmp(palabra, "override") == 0) {
         palabra = strtok(NULL, " ");
       }
 
@@ -69,7 +69,7 @@ void limpiarToken(char token[50]){
 
 int esPalabra(char *palabra)
 {
-  return strcmp(palabra, "object") == 0|| strcmp(palabra, "class") == 0|| strcmp(palabra, "var") == 0|| strcmp(palabra, "const") == 0|| strcmp(palabra, "method") == 0;
+  return strcmp(palabra, "object") == 0|| strcmp(palabra, "class") == 0|| strcmp(palabra, "var") == 0|| strcmp(palabra, "const") == 0|| strcmp(palabra, "method") == 0 || strcmp(palabra, "override") == 0;
 }
 
 
