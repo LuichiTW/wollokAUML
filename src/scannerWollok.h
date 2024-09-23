@@ -5,15 +5,7 @@
 #include <stdlib.h>
 #include <string.h>    
 
-typedef struct objetos{
-  char nombre[50];
-  char metodos[150];
-  struct objetos *siguiente;
-}objetos;
-
 void scanner(char *linea);
-void agregarObjeto(char token[50]);
-void agregarMetodo(objetos *auxiliar,char token[50]);
 void escrituraClase(char *palabra);
 void escrituraVariable(char *palabra);
 void limpiarLinea(char linea[150]);
