@@ -6,6 +6,7 @@
 #include <string.h>    
 
 void imprimirResultado();
+void imprimirHerencia();
 int esEspacio(char ch);
 
 #endif //IMPRIMIR_H

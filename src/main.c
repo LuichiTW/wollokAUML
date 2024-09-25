@@ -54,6 +54,7 @@ int main(){
     }
   }
 
+  imprimirHerencia();
   //se agrega una llave de cierre para cerrar el ultimo objeto
   printf("}\n");
 
