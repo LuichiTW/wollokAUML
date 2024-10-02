@@ -198,3 +198,16 @@ bindsym $mod+r mode "resize"
 
 # Hide title bar for stacked/tabbed containers
 font pango:DejaVu Sans Mono 0
+
+# Configure 5px of space between windows and to the screen edges.
+gaps inner 5px
+
+# Configure an additional 5px of extra space to the screen edges,
+# for a total gap of 10px to the screen edges, and 5px between windows.
+gaps outer 5px
+gaps top 0px
+
+# Only enable outer gaps when there is exactly one window or split container on the workspace.
+smart_gaps off
+
+hide_edge_borders smart
